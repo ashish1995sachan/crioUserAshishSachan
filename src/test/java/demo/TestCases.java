@@ -31,6 +31,7 @@ public class TestCases {
         WebElement name = driver.findElement(By.xpath("//div[@class='Xb9hP']/input[@type='text']"));
         Wrappers.enterString(name, "Ashish Sachan");
         Thread.sleep(2000);
+        System.out.println("Name Entered");
     }
 
     @Test
