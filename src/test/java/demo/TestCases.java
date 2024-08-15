@@ -27,7 +27,7 @@ public class TestCases {
     public void testCase01() throws InterruptedException{
         Thread.sleep(2000);
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         WebElement name = driver.findElement(By.xpath("//div[@class='Xb9hP']/input[@type='text']"));
         Wrappers.enterString(name, "Ashish Sachan");
         Thread.sleep(2000);
