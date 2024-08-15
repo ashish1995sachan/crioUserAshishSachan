@@ -31,7 +31,7 @@ public class TestCases {
         Thread.sleep(4000);
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
         WebElement name1 = driver.findElement(By.xpath("//div[@class='Xb9hP']/input[@data-initial-dir='auto']"));
-        name1.sendKeys("Test");
+        
         
         Wrappers.enterString(name1, "Ashish Sachan");
         Thread.sleep(2000);
