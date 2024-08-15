@@ -1,7 +1,6 @@
 package demo.wrappers;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,7 +22,6 @@ public class Wrappers {
      */
     
     public static void enterString(WebElement name , String text){
-        name.clear();
         name.sendKeys(text);
 
     }

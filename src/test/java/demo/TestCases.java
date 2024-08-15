@@ -1,12 +1,15 @@
 package demo;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -25,11 +28,12 @@ public class TestCases {
      */
     @Test
     public void testCase01() throws InterruptedException{
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        WebElement name = driver.findElement(By.xpath("//div[@class='Xb9hP']/input[@type='text']"));
-        Wrappers.enterString(name, "Ashish Sachan");
+        WebElement name1 = driver.findElement(By.xpath("//div[@class='Xb9hP']/input[@data-initial-dir='auto']"));
+        name1.sendKeys("Test");
+        
+        Wrappers.enterString(name1, "Ashish Sachan");
         Thread.sleep(2000);
         System.out.println("Name Entered");
     }
@@ -42,6 +46,7 @@ public class TestCases {
         String timeString = String.valueOf(epochtime);
         Thread.sleep(2000);
         Wrappers.enterString(practiceAutomation, reason+" "+timeString);
+        System.out.println("Reason entered");
         Thread.sleep(2000);
     }
      
@@ -102,13 +107,15 @@ public class TestCases {
     @Test
     public void testCase9() throws InterruptedException{
     WebElement submitsuccess = driver.findElement(By.xpath("//div[@class='vHW8K']"));
+    FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout((Duration.ofSeconds(20L)))
+				.pollingEvery(Duration.ofMillis(250)).ignoring(Exception.class);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='vHW8K']")));
     String success= submitsuccess.getText();
-    if(submitsuccess.isDisplayed()){
-        System.out.println("Thanks for your response, Automation Wizard!");;
-    }
-    else{
-        System.out.println("Submission of form Unsuccessful");
-    }
+    
+        System.out.println(success);;
+    
+    
     
     }
     /*
