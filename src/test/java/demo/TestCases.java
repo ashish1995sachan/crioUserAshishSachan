@@ -100,7 +100,8 @@ public class TestCases {
 
     @Test
     public void testCase9() throws InterruptedException{
-    WebElement submitsuccess = driver.findElement(By.xpath("//a[contains(text(),'Submit another response')]"));
+    WebElement submitsuccess = driver.findElement(By.xpath("//div[@class='vHW8K']"));
+    String success= submitsuccess.getText();
     if(submitsuccess.isDisplayed()){
         System.out.println("Thanks for your response, Automation Wizard!");;
     }
