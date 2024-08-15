@@ -31,7 +31,10 @@ public class TestCases {
         Thread.sleep(4000);
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
         WebElement name1 = driver.findElement(By.xpath("//div[@class='Xb9hP']/input[@data-initial-dir='auto']"));
-        
+        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout((Duration.ofSeconds(20L)))
+				.pollingEvery(Duration.ofMillis(250)).ignoring(Exception.class);
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='Xb9hP']/input[@data-initial-dir='auto']")));
         
         Wrappers.enterString(name1, "Ashish Sachan");
         Thread.sleep(2000);
@@ -107,10 +110,7 @@ public class TestCases {
     @Test
     public void testCase9() throws InterruptedException{
     WebElement submitsuccess = driver.findElement(By.xpath("//div[@class='vHW8K']"));
-    FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout((Duration.ofSeconds(20L)))
-				.pollingEvery(Duration.ofMillis(250)).ignoring(Exception.class);
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='vHW8K']")));
+    
     String success= submitsuccess.getText();
     
         System.out.println(success);;
