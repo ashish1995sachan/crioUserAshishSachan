@@ -10,6 +10,7 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -18,6 +19,7 @@ import java.time.Duration;
 import java.util.logging.Level;
 // import io.github.bonigarcia.wdm.WebDriverManager;
 import demo.wrappers.Wrappers;
+import dev.failsafe.internal.util.Durations;
 
 public class TestCases {
     ChromeDriver driver;
@@ -31,13 +33,11 @@ public class TestCases {
         Thread.sleep(4000);
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLSep9LTMntH5YqIXa5nkiPKSs283kdwitBBhXWyZdAS-e4CxBQ/viewform");
         WebElement name1 = driver.findElement(By.xpath("//div[@class='Xb9hP']/input[@data-initial-dir='auto']"));
-        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout((Duration.ofSeconds(20L)))
-				.pollingEvery(Duration.ofMillis(250)).ignoring(Exception.class);
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='Xb9hP']/input[@data-initial-dir='auto']")));
+        Wrappers.enterString(name1, "Crio Learner");
         
-        Wrappers.enterString(name1, "Ashish Sachan");
-        Thread.sleep(2000);
+
         System.out.println("Name Entered");
     }
 
@@ -101,14 +101,14 @@ public class TestCases {
     }
 
     @Test
-    public void testCase8() throws InterruptedException{
+    public void testCase08() throws InterruptedException{
     WebElement submit = driver.findElement(By.xpath("//span[contains(text(),'Submit')]"));
     submit.click();
     Thread.sleep(4000);
     }
 
     @Test
-    public void testCase9() throws InterruptedException{
+    public void testCase09() throws InterruptedException{
     WebElement submitsuccess = driver.findElement(By.xpath("//div[@class='vHW8K']"));
     
     String success= submitsuccess.getText();
@@ -143,6 +143,7 @@ public class TestCases {
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        
         
     }
 
